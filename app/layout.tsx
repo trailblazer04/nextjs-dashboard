@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <html 
     lang="en"
-    crxlauncher=""
+    // crxlauncher=""
     >
       <body>{children}</body>
     </html>
