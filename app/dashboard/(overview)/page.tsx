@@ -6,8 +6,12 @@ import { lusitana } from '@/app/ui/fonts';
 // import { fetchCardData } from '@/app/lib/data'; // remove fetchRevenue, fetchLatestInvoices
 import { Suspense } from 'react';
 import { RevenueChartSkeleton, LatestInvoicesSkeleton, CardsSkeleton, } from '@/app/ui/skeletons';
-
+import { Metadata } from 'next';
  
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
+
 export default async function Page() {
     // const revenue = await fetchRevenue();
     // const latestInvoices = await fetchLatestInvoices();
