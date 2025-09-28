@@ -1,7 +1,28 @@
+# services:
+#   nextjs-dashboard :
+#     build: .
+#     ports:
+#       - "4000:4000"
+#     env_file: 
+#       - .env
+
 services:
-  nextjs-dashboard :
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: mynextapp
+      POSTGRES_PASSWORD: mypass1234
+      POSTGRES_DB: myappdb
+    ports:
+      - "5432:5432"
+
+  nextjs-dashboard:
     build: .
     ports:
       - "4000:4000"
-    env_file: 
+    env_file:
       - .env
+    environment:
+      DATABASE_URL: postgresql://mynextapp:mypass1234@localhost:5432/myappdb
+    depends_on:
+      - db
