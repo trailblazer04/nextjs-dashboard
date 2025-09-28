@@ -50,7 +50,7 @@
 # CMD [ "node", "server.js" ]
 
 # ===== Build Stage =====
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /app
@@ -72,7 +72,7 @@ ENV SKIP_DB=true
 RUN pnpm build
 
 # ===== Production Stage =====
-FROM node:18-alpine AS prod
+FROM node:20-alpine AS prod
 
 WORKDIR /app
 
