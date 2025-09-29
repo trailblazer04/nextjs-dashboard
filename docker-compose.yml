@@ -1,46 +1,46 @@
-# services:
-#   nextjs-dashboard :
-#     build: .
-#     ports:
-#       - "4000:4000"
-#     env_file: 
-#       - .env
-
 services:
-  db:
-    image: postgres:15
-    container_name: nextjs_postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: mynextapp
-      POSTGRES_PASSWORD: mypass1234
-      POSTGRES_DB: myappdb
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-  nextjs-dashboard:
+  nextjs-dashboard :
     build: .
-    container_name: nextjs_dashboard
-    depends_on:
-      - db
     ports:
       - "4000:4000"
-    env_file:
+    env_file: 
       - .env
-    environment:
-      DATABASE_URL: postgresql://mynextapp:mypass1234@db:5432/myappdb
-    command: >
-      sh -c "
-      # Wait for Postgres to be ready
-      until nc -z db 5432; do
-        echo 'Waiting for Postgres...'
-        sleep 2
-      done
-      # Start the app
-      node server.js
-      "
 
-volumes:
-  pgdata:
+# services:
+#   db:
+#     image: postgres:15
+#     container_name: nextjs_postgres
+#     restart: unless-stopped
+#     environment:
+#       POSTGRES_USER: mynextapp
+#       POSTGRES_PASSWORD: mypass1234
+#       POSTGRES_DB: myappdb
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+
+#   nextjs-dashboard:
+#     build: .
+#     container_name: nextjs_dashboard
+#     depends_on:
+#       - db
+#     ports:
+#       - "4000:4000"
+#     env_file:
+#       - .env
+#     environment:
+#       DATABASE_URL: postgresql://mynextapp:mypass1234@db:5432/myappdb
+#     command: >
+#       sh -c "
+#       # Wait for Postgres to be ready
+#       until nc -z db 5432; do
+#         echo 'Waiting for Postgres...'
+#         sleep 2
+#       done
+#       # Start the app
+#       node server.js
+#       "
+
+# volumes:
+#   pgdata:
